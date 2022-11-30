@@ -1,12 +1,12 @@
 public class Level1 {
     public static int[] SynchronizingTables(int n, int[] ids, int[] salary) {
-        int[] idsTmp = new int[n];
+        int[] listEmployeesIdTemp = new int[n];
         int[] salTmp = new int[n];
 
-        int[] salFin = new int[n];
+        int[] orderedListSalaries = new int[n];
 
         for (int i = 0; i < n; i++) {
-            idsTmp[i] = ids[i];
+            listEmployeesIdTemp[i] = ids[i];
             salTmp[i] = salary[i];
         }
 
@@ -15,11 +15,11 @@ public class Level1 {
             flag = false;
 
             for (int i = 0; i < n - 1; i++) {
-                if (idsTmp[i + 1] < idsTmp[i]) {
-                    int t = idsTmp[i];
+                if (listEmployeesIdTemp[i + 1] < listEmployeesIdTemp[i]) {
+                    int t = listEmployeesIdTemp[i];
 
-                    idsTmp[i] = idsTmp[i + 1];
-                    idsTmp[i + 1] = t;
+                    listEmployeesIdTemp[i] = listEmployeesIdTemp[i + 1];
+                    listEmployeesIdTemp[i + 1] = t;
 
                     flag = true;
                 }
@@ -37,13 +37,13 @@ public class Level1 {
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                if (ids[i] == idsTmp[j]) {
-                    salFin[i] = salTmp[j];
+                if (ids[i] == listEmployeesIdTemp[j]) {
+                    orderedListSalaries[i] = salTmp[j];
                     break;
                 }
             }
         }
 
-        return salFin;
+        return orderedListSalaries;
     }
 }
