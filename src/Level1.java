@@ -3,8 +3,6 @@ public class Level1 {
         int[] listEmployeesIdTemp = new int[n];
         int[] salTmp = new int[n];
 
-        int[] orderedListSalaries = new int[n];
-
         for (int i = 0; i < n; i++) {
             listEmployeesIdTemp[i] = ids[i];
             salTmp[i] = salary[i];
@@ -34,6 +32,8 @@ public class Level1 {
                 }
             }
         }
+
+        int[] orderedListSalaries = new int[n];
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
