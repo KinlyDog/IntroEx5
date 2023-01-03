@@ -1,16 +1,15 @@
 public class Level1 {
     public static int[] SynchronizingTables(int n, int[] ids, int[] salary) {
+        // создаем временные копии массивов для работы
         int[] listEmployeesIdTemp = new int[n];
-        int[] salTmp = new int[n];
+        int[] listSalariesTemp = new int[n];
+        System.arraycopy(ids, 0, listEmployeesIdTemp, 0, n);
+        System.arraycopy(salary, 0, listSalariesTemp, 0, n);
 
-        for (int i = 0; i < n; i++) {
-            listEmployeesIdTemp[i] = ids[i];
-            salTmp[i] = salary[i];
-        }
-
-        boolean flag = true;
-        while (flag) {
-            flag = false;
+        // сортируем массивы по возрастанию
+        boolean isSorted = false;
+        while (!isSorted) {
+            isSorted = true;
 
             for (int i = 0; i < n - 1; i++) {
                 if (listEmployeesIdTemp[i + 1] < listEmployeesIdTemp[i]) {
@@ -19,26 +18,26 @@ public class Level1 {
                     listEmployeesIdTemp[i] = listEmployeesIdTemp[i + 1];
                     listEmployeesIdTemp[i + 1] = t;
 
-                    flag = true;
+                    isSorted = false;
                 }
 
-                if (salTmp[i + 1] < salTmp[i]) {
-                    int t = salTmp[i];
+                if (listSalariesTemp[i + 1] < listSalariesTemp[i]) {
+                    int t = listSalariesTemp[i];
 
-                    salTmp[i] = salTmp[i + 1];
-                    salTmp[i + 1] = t;
+                    listSalariesTemp[i] = listSalariesTemp[i + 1];
+                    listSalariesTemp[i + 1] = t;
 
-                    flag = true;
+                    isSorted = false;
                 }
             }
         }
 
+        // синхронизируем таблицы
         int[] orderedListSalaries = new int[n];
-
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (ids[i] == listEmployeesIdTemp[j]) {
-                    orderedListSalaries[i] = salTmp[j];
+                    orderedListSalaries[i] = listSalariesTemp[j];
                     break;
                 }
             }
